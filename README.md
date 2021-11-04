@@ -1,2 +1,2 @@
-# UnityMinesweeper
-Minesweeper project in unity for fun
+# [WIP] UnityMinesweeper
+Minesweeper project in unity for fun 
