@@ -19,4 +19,21 @@ public class Cube : MonoBehaviour
         get => _cubeValue;
         set => _cubeValue = value;
     }
+
+    /* Status : 
+        unflagged -> 0
+        flagged -> 1
+        maybe flagged -> 2
+    */
+
+    private short _status = 0;
+    public short Status{
+        get => _status;
+        set => _status = value;
+    }
+    private bool _hasBeenChecked = false;
+    public bool HasBeenChecked{
+        get => _hasBeenChecked;
+        set => _hasBeenChecked = value;
+    }
 }
