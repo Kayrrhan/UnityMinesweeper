@@ -36,10 +36,10 @@ public class CubeManager : MonoBehaviour
         _renderers = new Renderer[rows,columns];
         for (int i = 0; i != Mathf.Min(keys.Length, values.Length); i++)
             _materials.Add(keys[i], values[i]);
-        initGrid();
+        InitGrid();
     }
 
-    void initGrid(){
+    void InitGrid(){
         for(int i=0;i<rows;++i){
             for(int j=0;j<columns;++j){
                 GameObject o = Instantiate(cubePrefab,new Vector3(1.1f*i,1.1f*j,0),Quaternion.identity);
@@ -52,10 +52,10 @@ public class CubeManager : MonoBehaviour
                 _renderers[i,j].material = _materials["unclicked"];
             }
         }
-        generateMines();
+        GenerateMines();
     }
 
-    void generateMines(){
+    void GenerateMines(){
         List<int> listNumbers = new List<int>();
         int number;
         for (int i = 0; i < numberOfMines; ++i){
@@ -67,8 +67,8 @@ public class CubeManager : MonoBehaviour
         int x;
         int y;
         for(int i=0;i<numberOfMines;++i){
-            x = listNumbers[i]/rows;
-            y = listNumbers[i]%rows;
+            x = (listNumbers[i]%rows);
+            y = (listNumbers[i]%columns);
             _grid[x,y].CubeValue = -1;
         }
         for(int i=0;i<rows;++i){
@@ -85,11 +85,12 @@ public class CubeManager : MonoBehaviour
         }
     }
 
-    public void revealBombs(int x, int y){
+    public void RevealBombs(int x, int y){
         for(int i = 0; i<rows; i++){
             for (int j = 0; j<columns; j++){
-                if (_grid[i,j].CubeValue == -1)
+                if (_grid[i,j].CubeValue == -1 && _grid[i,j].Status != FlagStatus.FLAGGED){
                     _renderers[i,j].material = _materials["unclicked_bomb"];
+                }
             }
         }
         _renderers[x,y].material = _materials["clicked_bomb"];

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Cube : MonoBehaviour
 {
     private int _x=  0;
@@ -20,14 +21,8 @@ public class Cube : MonoBehaviour
         set => _cubeValue = value;
     }
 
-    /* Status : 
-        unflagged -> 0
-        flagged -> 1
-        maybe flagged -> 2
-    */
-
-    private short _status = 0;
-    public short Status{
+    private FlagStatus _status = FlagStatus.UNFLAGGED;
+    public FlagStatus Status{
         get => _status;
         set => _status = value;
     }
